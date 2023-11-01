@@ -36,6 +36,10 @@ allButtons.forEach((button)=>{
         }else if (btn.target.className=='operator'){
             if ((numberOne.length==0)&&(history.length!=0)){
                 numberOne = [history];
+            }else if (numberOne.length>0 && numberTwo.length>0){
+                numberOne = [calculate()];
+                operator = [x];
+                numberTwo = [];
             }
             const a =numberOne.join("");
             operator = [x];
@@ -56,6 +60,7 @@ allButtons.forEach((button)=>{
         }else if ((btn.target.className=='calculate')&&(numberOne.length>0)&&(numberTwo.length>0)&&(operator.length>0)){
             //console.log("TIME TO CALCULATE");
             calculate();
+            clear();
         }else{
             console.log('Error!')
         }
@@ -108,10 +113,13 @@ function calculate(calculateArray){
     console.log('Result = '+result);
     historyDisplay.textContent ="History:"+ result;
     history = result;
+    return result;
+}
 
+function clear(){
     numberOne = [];
     numberTwo = [];
     operator = [];
     showOperator.textContent='';
-
 }
+
